@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class BallController : MonoBehaviour
 {
-    ////private Rigidbody rb;
+    
     private CharacterController characterController;
     private ControllerAction controllerAction;   
     private Vector2 inputVector;
@@ -19,7 +19,7 @@ public class BallController : MonoBehaviour
 
     void Awake()
     {
-        ////rb = GetComponent<Rigidbody>(); 
+        
         characterController = GetComponent<CharacterController>();
         controllerAction = new ControllerAction();   
 
@@ -27,30 +27,30 @@ public class BallController : MonoBehaviour
         controllerAction.Ball.Movement.performed += Movement;
         controllerAction.Ball.Jump.performed += Jump;
         
-        var action = new InputAction("Movement", InputActionType.PassThrough);
-        action.performed += Movement;
-        action.Enable(); 
+        // var action = new InputAction("Movement", InputActionType.PassThrough);
+        // action.performed += Movement;
+        // action.Enable(); 
     }
 
     private void FixedUpdate() 
     {
         Gravity();
-        ////characterController.Move(direction * power * Time.deltaTime);
+    }
+
+    private void Update() {
+        Debug.Log(direction);
     }
 
     private void Movement(InputAction.CallbackContext context)
     {        
-        if (context.performed) // ? performed
-        {    
+        // if (context.performed) // ? performed
+        // {    
             inputVector = context.ReadValue<Vector2>();
             direction = new Vector3(inputVector.x, 0, inputVector.y);
             characterController.Move(direction * power);
 
             Rotation();         
-
-            ////rb.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * power, ForceMode.VelocityChange);
-            ////rb.velocity = new Vector3(inputVector.x, 0, inputVector.y);
-        }    
+        //}    
     }
     
     private void Rotation()

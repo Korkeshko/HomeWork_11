@@ -9,7 +9,7 @@ public class _5_DIP : MonoBehaviour // GameManager
     {
         player = GetComponent<Player>();
         player.HP = 100;
-    }
+    } 
 }
 
 public class Player : IPlayer
